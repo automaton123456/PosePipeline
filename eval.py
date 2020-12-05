@@ -104,6 +104,23 @@ def pose_pck_accuracy(output, target, mask, thr=0.05, normalize=None):
         - float: Averaged accuracy across all keypoints.
         - int: Number of valid keypoints.
     """
+
+    if len(output.shape) == 3:
+        output = np.expand_dims(output, axis=0)
+
+    if len(target.shape) == 3:
+        target = np.expand_dims(target, axis=0)
+
+    if len(mask.shape) == 3:
+        mask = np.reshape(mask, (1,17))
+
+
+    target = np.transpose(target, (0,3,1,2))
+    output = np.transpose(output, (0,3,1,2))
+    mask = np.array(mask)
+    mask = mask.astype(np.bool)
+
+
     N, K, H, W = output.shape
     if K == 0:
         return None, 0, 0
@@ -197,6 +214,3 @@ def keypoint_epe(pred, gt, mask):
     distance_valid = distances[distances != -1]
     valid_num = len(distance_valid)
     return distance_valid.sum() / valid_num
-
-
-
