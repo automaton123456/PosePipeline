@@ -1,3 +1,5 @@
+import numpy as np
+
 def get_warp_matrix(theta, size_input, size_dst, size_target):
     """Calculate the transformation matrix under the constraint of unbiased.
     Paper ref: Huang et al. The Devil is in the Details: Delving into Unbiased
