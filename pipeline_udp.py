@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 
 from post_processing_udp import (affine_transform, fliplr_joints, get_affine_transform)
-from mmpose.datasets.pipelines import get_warp_matrix, warp_affine_joints
+from shared_processing import get_warp_matrix, warp_affine_joints
 
 
 class TopDownRandomFlip:
